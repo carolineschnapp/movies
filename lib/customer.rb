@@ -17,7 +17,6 @@ class Customer
     total_amount, frequent_renter_points = 0, 0
     result = "Rental Record for #{@name}\n"
     @rentals.each do |element|
-      this_amount = charge(element)
       # add frequent renter points
       frequent_renter_points += 1
       # add bonus for a two day new release rental
@@ -25,8 +24,8 @@ class Customer
           frequent_renter_points += 1
       end
       # show figures for this rental
-      result += "  " + element.movie.title + " " + this_amount.to_s + "\n"
-      total_amount += this_amount
+      result += "  " + element.movie.title + " " + charge(element).to_s + "\n"
+      total_amount += charge(element)
     end
     # add footer lines
     result += "Amount owed is #{total_amount}\n"
@@ -36,7 +35,6 @@ class Customer
 
   def charge(rental)
     this_amount = 0
-    # determine amounts for each line
     case rental.movie.price_code
     when Movie::REGULAR
       this_amount += 2
