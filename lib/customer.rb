@@ -18,8 +18,6 @@ class Customer
     @rentals.each do |rental|
       result += "  " + rental.movie.title + " " + rental.charge.to_s + "\n"
     end
-
-    # add footer lines
     result += "Amount owed is #{total_amount}\n"
     result += "You earned #{frequent_renter_points} frequent renter points"
     result += "\n"

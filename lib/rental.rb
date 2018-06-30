@@ -26,4 +26,8 @@ class Rental
     # Bonus point for a two day new release rental, otherwise just 1.
     movie.price_code == Movie::NEW_RELEASE && days_rented > 1 ? 2 : 1
   end
+
+  def to_s
+    "#{movie.title} #{charge}"
+  end
 end
