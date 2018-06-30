@@ -10,6 +10,7 @@ class Movie
   attr_reader :title, :price, :price_code
 
   def_delegators :price, :charge
+  def_delegators :price, :frequent_renter_points
 
   def initialize(title, price_code)
     @title = title
@@ -23,10 +24,6 @@ class Movie
       when NEW_RELEASE then NewReleasePrice.new
       when CHILDRENS then ChildrensPrice.new
     end
-  end
-
-  def frequent_renter_points(days_rented)
-    price.frequent_renter_points(days_rented)
   end
 end
 
