@@ -4,10 +4,14 @@ class Movie
   CHILDRENS = 2
 
   attr_reader :title
-  attr_accessor :price_code
+  attr_reader :price_code
 
   def initialize(title, price_code)
     @title = title
+    @price_code = price_code
+  end
+
+  def price_code=(price_code)
     @price_code = price_code
   end
 
