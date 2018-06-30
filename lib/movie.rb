@@ -13,9 +13,9 @@ class Movie
   def price_code=(price_code)
     @price_code = price_code
     @price = case price_code
-    when REGULAR then RegularPrice.new
-    when NEW_RELEASE then NewReleasePrice.new
-    when CHILDRENS then ChildrensPrice.new
+      when REGULAR then RegularPrice.new
+      when NEW_RELEASE then NewReleasePrice.new
+      when CHILDRENS then ChildrensPrice.new
     end
   end
 
