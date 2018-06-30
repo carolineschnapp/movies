@@ -35,3 +35,12 @@ class Movie
     price_code == NEW_RELEASE && days_rented > 1 ? 2 : 1
   end
 end
+
+class RegularPrice
+end
+
+class NewReleasePrice
+end
+
+class ChildrensPrice
+end
