@@ -29,7 +29,7 @@ class Movie
 end
 
 module DefaultPrice
-  def frequent_renter_points(days_rented)
+  def frequent_renter_points(_)
     1
   end
 end
