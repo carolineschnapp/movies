@@ -55,7 +55,6 @@ class MovieRentalTest < Minitest::Test
   end
 
   def test_customer_can_be_given_a_statement_in_html
-    skip
     @customer.add_rental(Rental.new(@children_movie, 2))
     @customer.add_rental(Rental.new(@regular_movie, 3))
     @customer.add_rental(Rental.new(@new_release_movie, 1))

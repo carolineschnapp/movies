@@ -22,8 +22,23 @@ class Customer
     STATEMENT
   end
 
+  def html_statement
+    <<~STATEMENT
+      <h1>Rental Record for #{@name}</h1>
+      <ul>
+        #{html_line_items}
+      </ul>
+      <p>Amount owed is #{total_amount}</p>
+      <p>You earned #{frequent_renter_points} frequent renter points</p>
+    STATEMENT
+  end
+
   def line_items
     rentals.map { |rental| "  #{rental}" }.join("\n")
+  end
+
+  def html_line_items
+    rentals.map { |rental| "<li>#{rental}</li>" }.join("\n  ")
   end
 
   def total_amount
