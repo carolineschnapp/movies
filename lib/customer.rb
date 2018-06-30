@@ -45,6 +45,6 @@ class Customer
     result += "\n"
   end
 
-  def charge
+  def charge(element = :FIXME)
   end
 end
