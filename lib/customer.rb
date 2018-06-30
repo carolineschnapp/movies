@@ -44,4 +44,7 @@ class Customer
     result += "You earned #{frequent_renter_points} frequent renter points"
     result += "\n"
   end
+
+  def charge
+  end
 end
