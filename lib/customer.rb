@@ -16,7 +16,7 @@ class Customer
   def statement
     result = "Rental Record for #{@name}\n"
     @rentals.each do |rental|
-      result += "  " + rental.movie.title + " " + rental.charge.to_s + "\n"
+      result += "  #{rental}\n"
     end
     result += "Amount owed is #{total_amount}\n"
     result += "You earned #{frequent_renter_points} frequent renter points"
