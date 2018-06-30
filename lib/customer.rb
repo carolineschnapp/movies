@@ -17,6 +17,7 @@ class Customer
     total_amount, frequent_renter_points = 0, 0
     result = "Rental Record for #{@name}\n"
     @rentals.each do |element|
+      this_amount = charge(element)
       this_amount = 0
       # determine amounts for each line
       case element.movie.price_code
