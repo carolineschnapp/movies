@@ -24,8 +24,8 @@ class Customer
           frequent_renter_points += 1
       end
       # show figures for this rental
-      result += "  " + element.movie.title + " " + charge(element).to_s + "\n"
-      total_amount += charge(element)
+      result += "  " + element.movie.title + " " + element.charge.to_s + "\n"
+      total_amount += element.charge
     end
     # add footer lines
     result += "Amount owed is #{total_amount}\n"
