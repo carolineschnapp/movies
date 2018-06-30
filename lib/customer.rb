@@ -34,7 +34,7 @@ class Customer
     result += "\n"
   end
 
-  def charge(element = :FIXME)
+  def charge(element)
     this_amount = 0
     # determine amounts for each line
     case element.movie.price_code
