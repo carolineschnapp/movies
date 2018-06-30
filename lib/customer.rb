@@ -14,13 +14,20 @@ class Customer
   end
 
   def statement
-    result = "Rental Record for #{@name}\n"
+    <<~STATEMENT
+      Rental Record for #{@name}
+      #{line_items}
+      Amount owed is #{total_amount}
+      You earned #{frequent_renter_points} frequent renter points
+    STATEMENT
+  end
+
+  def line_items
+    line_items = ''
     @rentals.each do |rental|
-      result += "  #{rental}\n"
+      line_items += "  #{rental}\n"
     end
-    result += "Amount owed is #{total_amount}\n"
-    result += "You earned #{frequent_renter_points} frequent renter points"
-    result += "\n"
+    line_items.chomp
   end
 
   def total_amount
