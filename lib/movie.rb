@@ -4,6 +4,7 @@ class Movie
   CHILDRENS = 2
 
   attr_reader :title
+  attr_reader :price
   attr_reader :price_code
 
   def initialize(title, price_code)
