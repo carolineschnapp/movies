@@ -27,6 +27,7 @@ class Movie
     when REGULAR
       result = price.charge(days_rented)
     when NEW_RELEASE
+      price.charge(days_rented)
       result += days_rented * 3
     when CHILDRENS
       result += 1.5
@@ -48,6 +49,9 @@ class RegularPrice
 end
 
 class NewReleasePrice
+  def charge(days_rented)
+    days_rented * 3
+  end
 end
 
 class ChildrensPrice
