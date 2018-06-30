@@ -6,6 +6,7 @@ class Movie
   REGULAR = 0
   NEW_RELEASE = 1
   CHILDRENS = 2
+  PORN = 3
 
   attr_reader :title, :price, :price_code
 
@@ -22,6 +23,7 @@ class Movie
       when REGULAR then RegularPrice.new
       when NEW_RELEASE then NewReleasePrice.new
       when CHILDRENS then ChildrensPrice.new
+      when PORN then PornPrice.new
     end
   end
 end
@@ -55,5 +57,15 @@ class ChildrensPrice
 
   def charge(days_rented)
     days_rented > 3 ? days_rented * 1.5 - 3 : 1.5
+  end
+end
+
+class PornPrice
+  def charge(days_rented)
+    days_rented / 3
+  end
+
+  def frequent_renter_points(_)
+    0
   end
 end

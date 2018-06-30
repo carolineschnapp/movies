@@ -19,6 +19,11 @@ class MovieRentalTest < Minitest::Test
     assert_equal Movie::CHILDRENS, @children_movie.price_code
   end
 
+  def test_movie_has_price_code_for_porn
+    porn_movie = Movie.new('Deep Throat', Movie::PORN)
+    assert_equal Movie::PORN, porn_movie.price_code
+  end
+
   def test_movie_has_price_code_that_can_be_changed
     @children_movie.price_code = Movie::NEW_RELEASE
     assert_equal Movie::NEW_RELEASE, @children_movie.price_code
@@ -35,6 +40,18 @@ class MovieRentalTest < Minitest::Test
         Frantz 9
       Amount owed is 9
       You earned 2 frequent renter points
+    STATEMENT
+    assert_equal expected_statement, @customer.statement
+  end
+
+  def test_that_our_store_supports_a_new_price_code_for_pornos
+    porn_movie = Movie.new('Deep Throat', Movie::PORN)
+    @customer.add_rental(Rental.new(porn_movie, 3))
+    expected_statement = <<~STATEMENT
+      Rental Record for Caroline
+        Deep Throat 1
+      Amount owed is 1
+      You earned 0 frequent renter points
     STATEMENT
     assert_equal expected_statement, @customer.statement
   end
