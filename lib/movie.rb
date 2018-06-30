@@ -9,8 +9,7 @@ class Movie
 
   attr_reader :title, :price, :price_code
 
-  def_delegators :price, :charge
-  def_delegators :price, :frequent_renter_points
+  def_delegators :price, :charge, :frequent_renter_points
 
   def initialize(title, price_code)
     @title = title
