@@ -9,18 +9,6 @@ class Rental
 
   def charge
     movie.charge(days_rented)
-    result = 0
-    case movie.price_code
-    when Movie::REGULAR
-      result += 2
-      result += (days_rented - 2) * 1.5 if days_rented > 2
-    when Movie::NEW_RELEASE
-      result += days_rented * 3
-    when Movie::CHILDRENS
-      result += 1.5
-      result += (days_rented - 3) * 1.5 if days_rented > 3
-    end
-    result
   end
 
   def frequent_renter_points
