@@ -1,9 +1,15 @@
+require 'forwardable'
+
 class Movie
+  extend Forwardable
+
   REGULAR = 0
   NEW_RELEASE = 1
   CHILDRENS = 2
 
   attr_reader :title, :price, :price_code
+
+  def_delegators :price, :charge
 
   def initialize(title, price_code)
     @title = title
