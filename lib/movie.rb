@@ -52,10 +52,6 @@ end
 
 class ChildrensPrice
   def charge(days_rented)
-    result = 1.5
-    if days_rented > 3
-      result += (days_rented - 3) * 1.5
-    end
-    result
+    days_rented > 3 ? 1.5 + (days_rented - 3) * 1.5 : 1.5
   end
 end
