@@ -8,6 +8,7 @@ class Rental
   end
 
   def charge
+    movie.charge(days_rented)
     result = 0
     case movie.price_code
     when Movie::REGULAR
