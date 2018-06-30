@@ -43,11 +43,7 @@ end
 
 class RegularPrice
   def charge(days_rented)
-    result = 2
-    if days_rented > 2
-       result += (days_rented - 2) * 1.5
-    end
-    result
+    days_rented > 2 ? 2 + (days_rented - 2) * 1.5 : 2
   end
 end
 
