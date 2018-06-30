@@ -1,3 +1,5 @@
 source 'https://rubygems.org'
 gem 'minitest'
 gem 'pry-byebug'
+gem 'minitest-ci'
+gem 'rake'
