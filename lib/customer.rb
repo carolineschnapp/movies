@@ -14,23 +14,11 @@ class Customer
   end
 
   def statement
-    <<~STATEMENT
-      Rental Record for #{@name}
-      #{line_items}
-      Amount owed is #{total_amount}
-      You earned #{frequent_renter_points} frequent renter points
-    STATEMENT
+    TextStatement.for(self).value
   end
 
   def html_statement
-    <<~STATEMENT
-      <h1>Rental Record for #{@name}</h1>
-      <ul>
-        #{html_line_items}
-      </ul>
-      <p>Amount owed is #{total_amount}</p>
-      <p>You earned #{frequent_renter_points} frequent renter points</p>
-    STATEMENT
+    HtmlStatement.for(self).value
   end
 
   def line_items
@@ -47,5 +35,61 @@ class Customer
 
   def frequent_renter_points
     rentals.inject(0) { |total, rental| total + rental.frequent_renter_points }
+  end
+end
+
+class Statement
+  attr_reader :customer
+
+  def initialize(customer)
+    @customer = customer
+  end
+
+  def self.for(customer)
+    new(customer)
+  end
+
+  def header_string
+    "Rental Record for #{customer.name}"
+  end
+
+  def amount_owned_line
+    "Amount owed is #{customer.total_amount}"
+  end
+
+  def frequent_rental_points_line
+    "You earned #{customer.frequent_renter_points} frequent renter points"
+  end
+end
+
+class TextStatement < Statement
+  def value
+    <<~STATEMENT
+      #{header_string}
+      #{each_line_item.each(customer.rentals).join("\n")}
+      #{amount_owned_line}
+      #{frequent_rental_points_line}
+    STATEMENT
+  end
+
+  def each_line_item(x)
+    Proc.new { |x| "  #{x}" }
+  end
+end
+
+class HtmlStatement < Statement
+  def value
+    <<~STATEMENT
+      <h1>#{header_string}</h1>
+      <ul>
+        #{customer.html_line_items}
+      </ul>
+      <p>#{amount_owned_line}</p>
+      <p>#{frequent_rental_points_line}</p>
+    STATEMENT
+  end
+
+  def each_line_item(x)
+    Proc.new { |x| "<li>#{x}</li>" }
   end
 end
